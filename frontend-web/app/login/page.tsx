@@ -23,8 +23,8 @@ export default function LoginPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Login gagal');
-      // token stored httpOnly cookie by backend; also store in memory if needed
-      localStorage.setItem('accessToken', data.data?.accessToken || data.accessToken);
+      // token disimpan aman via httpOnly cookie oleh backend (bukan localStorage)
+      // untuk kebutuhan UX, simpan di Zustand/memory saja jika diperlukan
       alert('Login berhasil');
       router.push('/catalog');
     } catch (err) {

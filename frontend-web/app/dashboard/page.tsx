@@ -8,10 +8,8 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
     fetch(`${API_URL}/bookings/my`, {
       credentials: 'include',
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
       .then((r) => r.json())
       .then((j) => setBookings(j.data?.data || j.data || []))
@@ -20,11 +18,10 @@ export default function DashboardPage() {
   }, []);
 
   async function pay(bookingId: string) {
-    const token = localStorage.getItem('accessToken');
     const res = await fetch(`${API_URL}/payments`, {
       method: 'POST',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ bookingId }),
     });
     const j = await res.json();
