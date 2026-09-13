@@ -1,0 +1,16 @@
+node_modules
+dist
+coverage
+.env
+*.log
+.next
+out
+build
+.parcel-cache
+.turbo
+.venv
+__pycache__
+.vscode
+.idea
+*.tsbuildinfo
+coverage
